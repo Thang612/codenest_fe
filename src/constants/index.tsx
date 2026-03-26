@@ -2,15 +2,10 @@ import {
     Users,
     BookOpen,
     GraduationCap,
-    ChevronDown,
-    ChevronRight,
     LayoutDashboard,
-    UserCircle,
-    School,
 } from 'lucide-react';
 import type { TMenuItem } from "../types";
 
-// Thêm dấu [] sau TMenuItem
 export const menuItems: TMenuItem[] = [
     {
         label: 'Dashboard',
