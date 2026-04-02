@@ -21,3 +21,31 @@ export interface User {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface Course {
+    _id: string;
+    title: string;
+    slug: string;
+    minAge?: number;
+    maxAge?: number;
+    description?: string;
+    isDeleted: boolean
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface Lesson {
+    _id: string;
+    title: string;
+    content: string;
+    materials: {
+        title: string;
+        url: string;
+    }[];
+    courseId: string;
+    order: number;
+}
+
+export type ProtectedRouteProps = {
+    children: React.ReactNode;
+};

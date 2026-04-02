@@ -4,6 +4,8 @@ import { Field, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { useState } from "react";
 import { toast } from "sonner"; // Đảm bảo đã cài sonner
+import { useAuthStore } from "../store/auth.store";
+import { useNavigate } from "react-router-dom";
 
 export function LoginForm({
   className,
@@ -12,6 +14,8 @@ export function LoginForm({
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Trạng thái loading
+  const { setToken } = useAuthStore();
+  const navigate = useNavigate()
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,7 +31,8 @@ export function LoginForm({
       loading: 'Đang xác thực tài khoản...',
       success: (res) => {
         const token = res.data.access_token;
-        localStorage.setItem("token", token);
+        setToken(token)
+        navigate("/");
         setIsLoading(false);
         return 'Đăng nhập thành công!';
       },

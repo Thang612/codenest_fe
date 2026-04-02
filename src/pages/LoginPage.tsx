@@ -1,8 +1,14 @@
 import { LoginForm } from "../components/login-form"
 import LoginBanner from '../assets/banner_login.webp';
-
+import { useAuthStore } from "../store/auth.store";
+import { Navigate } from "react-router-dom";
 
 export default function LoginPage() {
+    const { user } = useAuthStore()
+
+    if (user) {
+        return <Navigate to="/" replace />;
+    }
     return (
         <div className="grid min-h-svh lg:grid-cols-2">
             <div className="flex flex-col gap-4 p-6 md:p-10">

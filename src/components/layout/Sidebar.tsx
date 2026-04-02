@@ -10,10 +10,12 @@ import { ModeToggle } from '../common/ModelToggle';
 import { menuItems } from '../../constants';
 import CodeNest_Logo from '../../assets/codenest_logo_horizontal.webp';
 import type { TMenuItem } from '../../types';
+import { useAuthStore } from '../../store/auth.store';
 
 const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
     const [openSubMenus, setOpenSubMenus] = useState<Record<string, boolean>>({});
+    const { user, token, logout } = useAuthStore();
 
     const location = useLocation();
 
@@ -121,7 +123,36 @@ const Sidebar = () => {
             <div className={`p-4 border-t border-primary/10 flex items-center transition-all ${isCollapsed ? 'flex-col gap-4' : 'justify-between'}`}>
                 <ModeToggle />
                 <div className="cursor-pointer hover:opacity-80 transition-opacity">
-                    <UserCircle size={isCollapsed ? 28 : 32} className="text-text" />
+                    {token ? (
+                        <div
+                            onClick={logout}
+                            className={`flex items-center gap-2 ${isCollapsed ? 'flex-col' : ''}`}
+                        >
+                            <UserCircle size={isCollapsed ? 28 : 32} className="text-text" />
+
+                            {!isCollapsed && (
+                                <div className="flex flex-col text-sm">
+                                    <span className="text-text font-semibold">
+                                        {user?.username || 'User'}
+                                    </span>
+                                    <span className="text-xs text-text-secondary">
+                                        Click to logout
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <Link
+                            to="/login"
+                            className={`flex items-center gap-2 ${isCollapsed ? 'flex-col' : ''}`}
+                        >
+                            <UserCircle size={isCollapsed ? 28 : 32} className="text-text" />
+
+                            {!isCollapsed && (
+                                <span className="text-text font-medium">Login</span>
+                            )}
+                        </Link>
+                    )}
                 </div>
             </div>
         </aside>
