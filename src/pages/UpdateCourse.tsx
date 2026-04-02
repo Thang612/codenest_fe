@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useAuthStore } from '../store/auth.store';
 import type { Course } from '../types';
 import { PlusCircle } from 'lucide-react';
 import { toast } from 'sonner';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
+import { Accordion } from '../components/ui/accordion';
 import LessonItem from '../components/lessons/LessonItem';
-import { Input } from '../components/ui/input';
 
 const UpdateCourse = () => {
     const { id } = useParams()

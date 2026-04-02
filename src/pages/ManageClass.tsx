@@ -8,7 +8,7 @@ import {
     TableHeader,
     TableRow,
 } from "../components/ui/table";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {
     Dialog,
@@ -24,7 +24,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useAuthStore } from "../store/auth.store";
-import DashboardModal from "../components/common/DashboardModal";
 
 // ================= TYPE =================
 type Class = {
