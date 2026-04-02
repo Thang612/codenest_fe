@@ -247,7 +247,6 @@ const ManageClass = () => {
                 </div>
             </div>
 
-            {/* <DashboardModal /> */}
         </>
     );
 };
